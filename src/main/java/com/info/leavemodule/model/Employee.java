@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Set;
 
@@ -33,6 +34,9 @@ public class Employee {
 
     @Column(name = "startdate")
     private Date startDate;
+
+    @Column(name = "remainingleaverights")
+    private int remainingLeaveRights;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "employee_id")
