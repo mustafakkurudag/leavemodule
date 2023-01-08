@@ -1,10 +1,13 @@
 package com.info.leavemodule.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.cglib.core.Local;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -19,14 +22,15 @@ public class Leave {
     private Long id;
 
     @Column(name = "startdate")
-    private Date startDate;
+    private LocalDate startDate;
 
     @Column(name = "enddate")
-    private Date endDate;
+    private LocalDate endDate;
 
     @Column(name = "leavestatus", nullable = false)
-    private int leaveStatus;
+    private String leaveStatus;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "employee_id", nullable = false)
     private Employee employee;

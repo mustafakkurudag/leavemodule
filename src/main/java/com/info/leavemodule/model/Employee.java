@@ -5,9 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Set;
+import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "employee")
@@ -33,13 +32,16 @@ public class Employee {
     private String designation;
 
     @Column(name = "startdate")
-    private Date startDate;
+    private LocalDate startDate;
+
+    @Column(name = "advanceday")
+    private int advanceDay;
 
     @Column(name = "remainingleaverights")
     private int remainingLeaveRights;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "employee_id")
-    private Set<Leave> leaves;
+    private List<Leave> leaves;
 
 }
