@@ -3,6 +3,7 @@ package com.info.leavemodule.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.cglib.core.Local;
@@ -13,6 +14,7 @@ import java.util.Date;
 @Entity
 @Table(name = "leaves")
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Leave {

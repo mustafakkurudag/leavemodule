@@ -8,11 +8,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 
@@ -23,9 +19,9 @@ public class LeaveService {
     private LeaveRepository leaveRepository;
     private EmployeeRepository employeeRepository;
 
-    public Leave createNewLeave(Long id, Leave leave) {
-        if (employeeRepository.findById(id).isPresent()) {
-            Employee employee = employeeRepository.findById(id).get();
+    public Leave createNewLeave(Long employee_id, Leave leave) {
+        if (employeeRepository.findById(employee_id).isPresent()) {
+            Employee employee = employeeRepository.findById(employee_id).get();
             leave.setLeaveStatus("Onay Bekleniyor");
             leave.setEmployee(employee);
             return leaveRepository.save(leave);
@@ -34,17 +30,11 @@ public class LeaveService {
         }
     }
 
-    public List<Leave> getLeaveIdsByEmployeeId(Long id) {
-        List<Leave> leaveIds = leaveRepository.getLeavesByEmployee_Id(id);
-        for (Leave l :
-                leaveIds) {
-            System.out.println("Id geldi" + l.getId());
-        }
+    public List<Leave> getLeavesByEmployeeId(Long id) {
+        List<Leave> leaves = leaveRepository.getLeavesByEmployee_Id(id);
 
-        return leaveIds;
+        return leaves;
     }
-
-
 
     public int findNumberOfLeaveDays(LocalDate startDate, LocalDate endDate) {
         int differenceDays =(int) DAYS.between(startDate, endDate);

@@ -36,14 +36,14 @@ public class EmployeeController {
         if (employee == null) {
             return ResponseEntity.notFound().build();
         } else {
-            employee.setLeaves(leaveService.getLeaveIdsByEmployeeId(id));
+            employee.setLeaves(leaveService.getLeavesByEmployeeId(id));
             return ResponseEntity.ok().body(employee);
         }
     }
 
     @GetMapping("/get/{id}/leaves")
     public ResponseEntity<List<Leave>> showEmployeeLeaves(@PathVariable("id") Long id) {
-        List<Leave> leaves = leaveService.getLeaveIdsByEmployeeId(id);
+        List<Leave> leaves = leaveService.getLeavesByEmployeeId(id);
         return ResponseEntity.ok().body(leaves);
     }
 

@@ -15,10 +15,8 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.ChronoField;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 
@@ -37,13 +35,12 @@ public class EmployeeService {
     }
 
     public List<Employee> getAllEmployees() {
-        List<Employee> employees = employeeRepository.findAll();
-        return employees;
+        return employeeRepository.findAll();
     }
 
     public Employee getEmployee(Long id) {
         Optional<Employee> optionalEmployee = employeeRepository.findById(id);
-        List<Leave> leaveIds = leaveService.getLeaveIdsByEmployeeId(id);
+        List<Leave> leaveIds = leaveRepository.getLeavesByEmployee_Id(id);
 
         if (optionalEmployee.isPresent()) {
             optionalEmployee.get().setLeaves(leaveIds);
