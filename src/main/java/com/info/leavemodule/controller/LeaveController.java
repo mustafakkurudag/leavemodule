@@ -2,6 +2,7 @@ package com.info.leavemodule.controller;
 
 import com.info.leavemodule.model.Leave;
 import com.info.leavemodule.service.LeaveService;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,7 @@ public class LeaveController {
     private LeaveService leaveService;
 
     @PostMapping("/new/{employee_id}")
+    @ApiOperation("Yeni izin oluşturma işlemini gerçekleştirir.")
     public ResponseEntity<String> createNewLeaveRequest(@PathVariable("employee_id") Long employee_id, @RequestBody Leave leave) {
         leaveService.createNewLeave(employee_id, leave);
         return ResponseEntity.ok().body("Talebiniz alındı. Onay durumunu sistemden takip edebilirsiniz.");
